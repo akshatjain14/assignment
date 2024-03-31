@@ -50,7 +50,7 @@ func GetEmployee(key string) (interface{}, error) {
 		return nil, err
 	}
 
-	var employee interface{}
+	var employee sqlOperations.Employee
 	err = json.Unmarshal([]byte(val), &employee)
 	if err != nil {
 		return nil, err
@@ -75,6 +75,9 @@ func GetAllEmployeesFromRedis() ([]sqlOperations.Employee, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	// Sort the keys
+	// sort.Strings(keys)
 
 	for _, key := range keys {
 		val, err := RedisClient.Get(context.Background(), key).Result()

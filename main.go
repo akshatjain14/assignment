@@ -38,8 +38,6 @@ func main() {
 	router.GET("/employee/:id", handlers.GetEmployeeHandler)
 	router.PUT("/employee/:id", handlers.UpdateEmployeeHandler)
 	router.DELETE("/employee/:id", handlers.DeleteEmployeeHandler)
-
-	// Additional routes for Redis data
 	router.GET("/redis/employees", handlers.GetAllEmployeesFromRedisHandler)
 	router.GET("/redis/employee/:id", handlers.GetEmployeeFromRedisHandler)
 

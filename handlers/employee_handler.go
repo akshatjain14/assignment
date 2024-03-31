@@ -5,6 +5,7 @@ import (
 	"assignment/sqlOperations"
 	"fmt"
 	"net/http"
+	"sort"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -100,6 +101,11 @@ func GetAllEmployeesFromRedisHandler(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
+	// Sort employees by ID
+	sort.Slice(employees, func(i, j int) bool {
+		return employees[i].ID < employees[j].ID
+	})
+
 	c.JSON(http.StatusOK, employees)
 }
 
